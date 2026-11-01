@@ -2,6 +2,10 @@ package part03;
 
 import java.util.Map;
 import java.util.Scanner;
+import java.util.List; 
+import java.util.ArrayList; 
+import java.util.Collections; 
+import java.util.Comparator;
 
 /**
  * This part of the exercise is tested manually through the user interface, not
@@ -36,32 +40,45 @@ public class PostalCodesMain {
          * The keys in the map are postal codes and the values are postal district
          * names.
          */
-        Map<String, String> postalCodes = PostalCodesReader.readPostalCodes();
+        Map<String, String> postalCodes =
+            PostalCodesReader.readPostalCodes();
 
         Scanner scanner = new Scanner(System.in);
+
         System.out.print("Input postal code or district (e.g., 00100 or Helsinki): ");
-        String answer = scanner.nextLine(); // answer may be a postal code or a postal district name
-        
+
+        String answer = scanner.nextLine().trim();
+
         if (postalCodes.containsKey(answer)) {
+
             System.out.println(postalCodes.get(answer));
+
         } else {
-            java.util.List<String> foundCodes = new java.util.ArrayList<>();
-            
-            for (java.util.Map.Entry<String, String> entry : postalCodes.entrySet()) {
-                if (entry.getValue().trim().equalsIgnoreCase(answer.trim())){
+
+            List<String> foundCodes = new ArrayList<>();
+
+            for (Map.Entry<String, String> entry : postalCodes.entrySet()) {
+
+                if (entry.getValue().trim().equalsIgnoreCase(answer)) {
                     foundCodes.add(entry.getKey());
-                }
-            }
-            
-            if (!foundCodes.isEmpty()) {
-                java.util.Collections.sort(foundCodes);
-                for (String code : foundCodes) {
-                    System.out.println(code);
-                }
-            } else {
-                System.out.println("Unknown postal code or district.");
             }
         }
-        scanner.close();
+
+            if (!foundCodes.isEmpty()) {
+
+                foundCodes.sort(Comparator.comparingInt(Integer::parseInt));
+
+                for (String code : foundCodes) {
+                System.out.println(code);
+            }
+
+            } else {
+
+            System.out.println("Unknown postal code or district.");
+
+        }
     }
+
+    scanner.close();
 }
+}    
