@@ -37,7 +37,7 @@ public class MapBasicsTest {
 
     @Test
     void testAddEntry() {
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(2);
 
         mapBasics.addEntry(map, "hello", "world");
         mapBasics.addEntry(map, "terve", "maailma");

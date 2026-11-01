@@ -41,9 +41,27 @@ public class PostalCodesMain {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Input postal code or district (e.g., 00100 or Helsinki): ");
         String answer = scanner.nextLine(); // answer may be a postal code or a postal district name
-
-        // TODO: Implement your logic here
-
+        
+        if (postalCodes.containsKey(answer)) {
+            System.out.println(postalCodes.get(answer));
+        } else {
+            java.util.List<String> foundCodes = new java.util.ArrayList<>();
+            
+            for (java.util.Map.Entry<String, String> entry : postalCodes.entrySet()) {
+                if (entry.getValue().equalsIgnoreCase(answer)) {
+                    foundCodes.add(entry.getKey());
+                }
+            }
+            
+            if (!foundCodes.isEmpty()) {
+                java.util.Collections.sort(foundCodes);
+                for (String code : foundCodes) {
+                    System.out.println(code);
+                }
+            } else {
+                System.out.println("Unknown postal code or district.");
+            }
+        }
         scanner.close();
     }
 }
