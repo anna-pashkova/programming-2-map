@@ -5,7 +5,6 @@ import java.util.Scanner;
 import java.util.List; 
 import java.util.ArrayList; 
 import java.util.Collections; 
-import java.util.Comparator;
 
 /**
  * This part of the exercise is tested manually through the user interface, not
@@ -66,7 +65,7 @@ public class PostalCodesMain {
 
             if (!foundCodes.isEmpty()) {
 
-                foundCodes.sort(Comparator.comparingInt(Integer::parseInt));
+                Collections.sort(foundCodes);
 
                 for (String code : foundCodes) {
                 System.out.println(code);
