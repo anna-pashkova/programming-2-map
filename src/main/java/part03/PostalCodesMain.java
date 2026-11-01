@@ -48,7 +48,7 @@ public class PostalCodesMain {
             java.util.List<String> foundCodes = new java.util.ArrayList<>();
             
             for (java.util.Map.Entry<String, String> entry : postalCodes.entrySet()) {
-                if (entry.getValue().toLowerCase().equals(answer.toLowerCase())) {
+                if (entry.getValue().trim().equalsIgnoreCase(answer.trim())){
                     foundCodes.add(entry.getKey());
                 }
             }
